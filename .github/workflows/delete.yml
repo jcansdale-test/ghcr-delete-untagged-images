@@ -1,3 +1,7 @@
+env:
+  PACKAGE_NAME: kipp2
+  PER_PAGE: 2
+
 on:
   push:
 
@@ -12,12 +16,14 @@ jobs:
         with:
           github-token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
           script: |
-            const response = await github.request("GET /user/packages/container/kipp2/versions", { per_page: "1"  });
+            const response = await github.request("GET /user/packages/container/${{ env.PACKAGE_NAME }}/versions",
+              { per_page: ${{ env.PACKAGE_NAME }}
+            });
             for(version of response.data) {
                 if (version.metadata.container.tags.length == 0) {
                     console.log("delete " + version.id)
 
-                    const deleteResponse = await github.request("DELETE /user/packages/container/kipp2/versions/" + version.id, { });
+                    const deleteResponse = await github.request("DELETE /user/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
                     console.log("status " + deleteResponse.status)
                 }
             }
