@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
           script: |
             const response = await github.request("GET /user/packages/container/kipp2/versions", { per_page: "1"  });
             for(version of response.data) {
