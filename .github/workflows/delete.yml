@@ -1,0 +1,23 @@
+on:
+  push:
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const response = await github.request("GET /user/packages/container/kipp2/versions", { per_page: "1"  });
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0) {
+                    console.log("delete " + version.id)
+
+                    const deleteResponse = await github.request("DELETE /user/packages/container/kipp2/versions/" + version.id, { });
+                    console.log("status " + deleteResponse.status)
+                }
+            }
