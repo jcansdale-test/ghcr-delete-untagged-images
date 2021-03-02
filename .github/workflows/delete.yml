@@ -23,6 +23,6 @@ jobs:
                 }
             }
         env:
+          OWNER: user # or orgs/<org name>
           PACKAGE_NAME: kipp2
           PER_PAGE: 2
-          OWNER: user # or orgs/<org name>
