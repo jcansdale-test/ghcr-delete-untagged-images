@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/github-script@v3
+      - name: Delete untagged images
+        uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
           script: |
