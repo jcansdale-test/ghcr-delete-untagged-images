@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   
 env:
-  PACKAGE_NAME: kipp2
+  PACKAGE_NAME: example-buildx-push
 
 jobs:
   build:
