@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Delete untagged images
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6.3.3
         with:
           github-token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
           script: |
