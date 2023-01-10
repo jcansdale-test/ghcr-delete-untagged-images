@@ -1,6 +1,9 @@
 on:
   push:
   workflow_dispatch:
+  
+env:
+  PACKAGE_NAME: kipp2
 
 jobs:
   build:
@@ -25,5 +28,5 @@ jobs:
             }
         env:
           OWNER: user # or orgs/<org name>
-          PACKAGE_NAME: kipp2
-          PER_PAGE: 2
+          PACKAGE_NAME: ${{ env.PACKAGE_NAME }}
+          PER_PAGE: 100
